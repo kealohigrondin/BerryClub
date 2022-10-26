@@ -9,12 +9,18 @@ module.exports = (app) => {
 
   app.get(
     "/auth/google",
-    passport.authenticate("google", { scope: ["email"] })
+    passport.authenticate("google", { scope: ["profile"] })
   );
 
   //this endpoint is hit when /auth/google successfully auths user and sends them back to server
   //exchanges a code received from google in the /auth/google callback and gets user info
-  app.get("/auth/google/callback", passport.authenticate("google"));
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google"),
+    (req, res) => {
+      res.redirect("/auth/current_user");
+    }
+  );
 
   app.get("/auth/logout", (req, res) => {
     req.logout(); //function attached to req by passport (kills cookie in browser)

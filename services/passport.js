@@ -29,17 +29,17 @@ const gOptions = {
 //   async function call with then(res => {})
 const gStrategy = new GoogleStrategy(
   gOptions,
-  async (accessToken, refreshToken, profile, done) => {
+  async (accessToken, refreshToken, { id, name, displayName }, done) => {
     //callback function that runs after auth/google/callback gets a result from google
     //check that the user doesn't exist yet
-    const existingUser = await User.findOne({ googleId: profile.id });
+    const existingUser = await User.findOne({ googleId: id });
     if (existingUser) {
       console.log(existingUser);
       return done(null, existingUser); //no error, return with the existing user
     }
-
+    console.log("creating new user for ", displayName);
     //creates a new user and adds to mongodb
-    const newUser = await new User({ googleId: profile.id }).save();
+    const newUser = await new User({ googleId: id, name, displayName }).save();
     done(null, newUser);
   }
 );
