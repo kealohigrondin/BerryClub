@@ -18,7 +18,7 @@ module.exports = (app) => {
     "/auth/google/callback",
     passport.authenticate("google"),
     (req, res) => {
-      res.redirect("/auth/current_user");
+      res.redirect("/dashboard");
     }
   );
 
@@ -29,10 +29,6 @@ module.exports = (app) => {
 
   //view currently logged in user
   app.get("/auth/current_user", (req, res) => {
-    if (!req.user) {
-      res.send({ error: "Nobody is logged in" });
-    } else {
-      res.send(req.user);
-    }
+    res.send(req.user);
   });
 };
