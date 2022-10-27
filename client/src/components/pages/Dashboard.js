@@ -1,13 +1,21 @@
 import React from "react";
-// import requireAuth from "./requireAuth";
+import { useSelector } from "react-redux";
+
+import requireAuth from "../requireAuth";
 
 function Dashboard() {
+  const auth = useSelector((state) => state.auth);
+
+  if (!auth) {
+    return <div className="ui active loader"></div>;
+  }
+  
   return (
     <div>
       <h1>Secure Dashboard </h1>
-      <p>(user is logged in at this point)</p>
+      <p>Hello, {auth?.name.givenName}</p>
     </div>
   );
 }
-// export default requireAuth(Dashboard);
-export default Dashboard;
+
+export default requireAuth(Dashboard);

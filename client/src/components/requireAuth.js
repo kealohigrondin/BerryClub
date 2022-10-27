@@ -1,24 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { connect } from "react-redux";
 
 export default function requireAuth(ChildComponent) {
-  class ComposedComponent extends React.Component {
-    //navigates back to the root page if this.props.auth is false
-    render() {
-      console.log(this.props.auth);
-      if (!this.props.auth) console.log("requireAuth HOC blocked navigation");
-      return (
-        <>
-          {!this.props.auth && <Navigate to="/" />}
-          <ChildComponent {...this.props} />
-        </>
-      );
-    }
-  }
-  const mapStateToProps = (state) => {
-    return { auth: state.auth };
-  };
+  return function ComposedComponent(props) {
+    //navigates back to the root page if auth is false
+    const auth = useSelector((state) => state.auth);
+    console.log(auth);
 
-  return connect(mapStateToProps)(ComposedComponent);
+    if (auth === false) {
+      console.log("RrquireAuth HOC blocked navigation");
+      return <Navigate to="/" />;
+    }
+
+    return <ChildComponent {...props} />;
+  };
 }

@@ -5,9 +5,6 @@ import { connect } from "react-redux";
 import Nav from "./Nav";
 import Welcome from "./pages/Welcome";
 import Dashboard from "./pages/Dashboard";
-// import SignUp from "../components/auth/SignUp";
-// import SignIn from "./auth/SignIn";
-// import SignOut from "./auth/SignOut";
 
 import { getCurrentUser } from "../actions";
 
