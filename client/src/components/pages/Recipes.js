@@ -1,47 +1,61 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import requireAuth from "../HOCs/requireAuth";
+import AddIcon from "@mui/icons-material/Add";
+import { Button, Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function Recipes() {
   const [recipeList, setRecipeList] = useState();
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const getRecipes = async () => {
       const res = await axios.get("/api/recipes");
       if (res && !recipeList) {
         setRecipeList(res.data);
-        console.log("loaded true");
       }
     };
     getRecipes();
-    console.log(recipeList);
   }, [recipeList]);
-
+  const renderRecipeList = () => {
+    return recipeList.map((recipe) => {
+      return (
+        <div key={recipe._id}>
+          <h4>{recipe.name}</h4>
+          <div>
+            {recipe.instructions.map((instruction) => {
+              return <p key={instruction}>{instruction}</p>;
+            })}
+          </div>
+          <div>
+            {recipe.ingredients.map((ingredient) => {
+              return <p key={ingredient}>{ingredient}</p>;
+            })}
+          </div>
+        </div>
+      );
+    });
+  };
   return (
     <>
-      <h2>My Recipes</h2>
-      <div>
-        {recipeList ? (
-          recipeList.map((recipe) => {
-            return (
-              <div key={recipe._id}>
-                <h4>{recipe.name}</h4>
-                <div>
-                  {recipe.instructions.map((instruction) => {
-                    return <p key={instruction}>{instruction}</p>;
-                  })}
-                </div>
-                <div>
-                  {recipe.ingredients.map((ingredient) => {
-                    return <p key={ingredient}>{ingredient}</p>;
-                  })}
-                </div>
-              </div>
-            );
-          })
-        ) : (
-          <div className="ui active loader"></div>
-        )}
-      </div>
+      <Box m={1} display="flex" justifyContent="space-between">
+        <h2>My Recipes</h2>
+        <Button
+          variant="contained"
+          color="success"
+          sx={{ height: "35px" }}
+          onClick={() => navigate("/recipe/create")}
+        >
+          <AddIcon />
+          <span style={{ paddingLeft: "0.5em" }}>Create Recipe</span>
+        </Button>
+      </Box>
+      {recipeList ? (
+        renderRecipeList()
+      ) : (
+        <div className="ui active loader"></div>
+      )}
     </>
   );
 }

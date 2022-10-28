@@ -49,25 +49,36 @@ function Nav() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Shows on desktop */}
-          <Typography
-            id="desktopTitle"
-            variant="h6"
-            noWrap
-            component="a"
-            href="/dashboard"
+          <Button
+          id="desktopTitle"
             sx={{
-              mr: 2,
+              mr: 6,
               display: { xs: "none", md: "flex" },
+              fontWeight: 800,
               fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
+              fontSize: "1.2em",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            BERRY CLUB
-          </Typography>
+            🍇 Berry Club
+          </Button>
+          <Box
+            id="desktopNav"
+            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+          >
+            {pages.map(({ title, route }) => (
+              <Button
+                key={title}
+                onClick={() => navigate(route)}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                {title}
+              </Button>
+            ))}
+          </Box>
 
+          
           <Box
             id="mobileNav"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
@@ -108,20 +119,7 @@ function Nav() {
             </Menu>
           </Box>
 
-          <Box
-            id="desktopNav"
-            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
-          >
-            {pages.map(({ title, route }) => (
-              <Button
-                key={title}
-                onClick={() => navigate(route)}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {title}
-              </Button>
-            ))}
-          </Box>
+          
 
           <Typography
             id="mobileTitle"
@@ -135,12 +133,11 @@ function Nav() {
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            Berry Club
+            🍇 BERRY CLUB
           </Typography>
 
           {/* Shows on both */}

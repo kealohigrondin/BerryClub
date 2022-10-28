@@ -8,12 +8,16 @@ export default function Welcome() {
       direction="column"
       alignItems="center"
       justify="center"
+      // background: "darkslateblue"
       sx={{ minHeight: "100vh", pt: "15em" }}
     >
       <Grid item>
-        <Card style={{ background: "white" }}>
+        <Card style={{ background: "darkslateblue" }}>
           <CardContent>
-            <div className="ui header" style={{ textAlign: "center" }}>
+            <div
+              className="ui header"
+              style={{ textAlign: "center", color: "ivory" }}
+            >
               <h1>Welcome to the Berry Club 🍇</h1>
             </div>
 

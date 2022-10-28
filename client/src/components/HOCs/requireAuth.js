@@ -13,10 +13,6 @@ export default function requireAuth(ChildComponent) {
       return <Navigate to="/" />;
     }
 
-    return (
-      <div className="ui segment">
-        <ChildComponent {...props} />
-      </div>
-    );
+    return <ChildComponent {...props} />;
   };
 }

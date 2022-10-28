@@ -9,12 +9,12 @@ function Dashboard() {
   if (!auth) {
     return <div className="ui active loader"></div>;
   }
-  
+
   return (
-    <div>
+    <>
       <h1>Secure Dashboard </h1>
       <p>Hello, {auth?.name.givenName}</p>
-    </div>
+    </>
   );
 }
 

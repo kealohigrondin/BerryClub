@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Recipes from "./pages/Recipes";
 
 import { GET_CURRENT_USER } from "../actions/types";
+import RecipeCreate from "./pages/RecipeCreate";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,13 +24,14 @@ function App() {
   });
 
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={{ height: "100vh", background: "snow" }}>
       <Nav />
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ paddingTop: "4em" }}>
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/recipes" element={<Recipes />} />
+          <Route path="/recipe/create" element={<RecipeCreate />} />
         </Routes>
       </Container>
     </div>
