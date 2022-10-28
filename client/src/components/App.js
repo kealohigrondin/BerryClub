@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-
+import { Container } from "@mui/material";
 import Nav from "./Nav";
 import Welcome from "./pages/Welcome";
 import Dashboard from "./pages/Dashboard";
@@ -23,15 +23,15 @@ function App() {
   });
 
   return (
-    <div style={{ height: "100vh", background: "darkslateblue" }}>
+    <div style={{ height: "100vh" }}>
       <Nav />
-      <div className="ui container">
+      <Container maxWidth="lg">
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/recipes" element={<Recipes />} />
         </Routes>
-      </div>
+      </Container>
     </div>
   );
 }
