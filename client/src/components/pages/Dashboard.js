@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import requireAuth from "../requireAuth";
+import requireAuth from "../HOCs/requireAuth";
 
 function Dashboard() {
   const auth = useSelector((state) => state.auth);

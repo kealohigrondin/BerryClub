@@ -1,20 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 // import { changeAuth } from "../actions/index";
 
-class Nav extends React.Component {
-  renderRightMenu() {
-    switch (this.props.auth) {
+function Nav() {
+  const auth = useSelector((state) => state.auth);
+  const renderRightMenu = () => {
+    switch (auth) {
       case null: //neither
         return "Still deciding";
-      case false: //not logged in
-        return (
-          <a href="/auth/google" className="item">
-            <i className="google icon" />
-            Login with Google
-          </a>
-        );
       default: //logged in
         return (
           <a href="/auth/logout" className="item">
@@ -22,20 +16,23 @@ class Nav extends React.Component {
           </a>
         );
     }
+  };
+
+  if (!auth) {
+    return null;
   }
-  render() {
-    return (
-      <div className="ui primary menu" style={{ marginBottom: "2em" }}>
-        <Link to={this.props.auth ? '/dashboard' : '/'} className="item">
-          Home
+
+  return (
+    <div className="ui container">
+      <div className="ui menu" style={{ marginBottom: "2em" }}>
+        <Link to="/dashboard" className="item">
+          <i className="icon home" />
         </Link>
-        <div className="right menu">{this.renderRightMenu()}</div>
+        <Link to="/recipes" className="item">Recipes</Link>
+        <div className="right menu">{renderRightMenu()}</div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-const mapStateToProps = (state) => {
-  return { auth: state.auth };
-};
-export default connect(mapStateToProps)(Nav);
+export default Nav;

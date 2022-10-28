@@ -8,6 +8,11 @@ import reduxThunk from "redux-thunk";
 import reducers from "./reducers";
 import App from "./components/App";
 
+///// Remove later --- for development only /////
+import axios from "axios";
+window.axios = axios;
+///// /////
+
 const store = configureStore({
   reducer: reducers,
   // preloadedState: {

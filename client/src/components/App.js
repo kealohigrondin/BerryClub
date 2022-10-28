@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Nav from "./Nav";
 import Welcome from "./pages/Welcome";
 import Dashboard from "./pages/Dashboard";
+import Recipes from "./pages/Recipes";
 
 import { getCurrentUser } from "../actions";
 
@@ -17,18 +18,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
+      <div style={{ height: "100vh", background: "darkslateblue" }}>
         <Nav />
         <div className="ui container">
           <Routes>
             <Route path="/" element={<Welcome />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            {/* <Route path="/signup" element={<SignUp />} /> */}
-            {/* <Route path="/signin" element={<SignIn />} /> */}
-            {/* <Route path="/signout" element={<SignOut />} /> */}
+            <Route path="/recipes" element={<Recipes />} />
           </Routes>
         </div>
-      </>
+      </div>
     );
   }
 }
