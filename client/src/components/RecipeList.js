@@ -4,7 +4,6 @@ import {
   AccordionSummary,
   Grid,
   Button,
-  Box,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -23,16 +22,26 @@ function RecipeList({ recipeList }) {
           <Grid container>
             <Grid item xs={12} sm={8}>
               <h4>Instructions</h4>
-              {recipe.instructions.map((instruction) => {
-                return <p key={instruction}>{instruction}</p>;
-              })}
+              <ol>
+                {recipe.instructions.map((instruction) => {
+                  return <li key={instruction}>{instruction}</li>;
+                })}
+              </ol>
             </Grid>
             <Grid item xs={12} sm={4}>
               <h4>Ingredients</h4>
-              {recipe.ingredients.map((ingredient) => {
-                return <p key={ingredient}>{ingredient}</p>;
-              })}
-              <Button>Add to cart</Button>
+              <ul>
+                {recipe.ingredients.map((ingredient) => {
+                  return <li key={ingredient}>{ingredient}</li>;
+                })}
+              </ul>
+              <Button
+                variant="outlined"
+                color="success"
+                sx={{ float: "right" }}
+              >
+                Add to basket
+              </Button>
             </Grid>
           </Grid>
         </AccordionDetails>

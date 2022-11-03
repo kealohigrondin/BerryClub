@@ -1,7 +1,13 @@
 import { Grid, Card, CardContent, Button } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
+
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
+
 export default function Welcome() {
-  return (
+  const auth = useSelector((state) => state.auth);
+
+  return auth === false ? (
     <Grid
       container
       spacing={0}
@@ -35,5 +41,7 @@ export default function Welcome() {
         </Card>
       </Grid>
     </Grid>
+  ) : (
+    <Navigate to="dashboard" />
   );
 }
