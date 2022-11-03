@@ -4,11 +4,12 @@ import requireAuth from "../HOCs/requireAuth";
 import AddIcon from "@mui/icons-material/Add";
 import { Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import RecipeList from "../RecipeList";
 
 function Recipes() {
   const [recipeList, setRecipeList] = useState();
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const getRecipes = async () => {
       const res = await axios.get("/api/recipes");
@@ -18,25 +19,7 @@ function Recipes() {
     };
     getRecipes();
   }, [recipeList]);
-  const renderRecipeList = () => {
-    return recipeList.map((recipe) => {
-      return (
-        <div key={recipe._id}>
-          <h4>{recipe.name}</h4>
-          <div>
-            {recipe.instructions.map((instruction) => {
-              return <p key={instruction}>{instruction}</p>;
-            })}
-          </div>
-          <div>
-            {recipe.ingredients.map((ingredient) => {
-              return <p key={ingredient}>{ingredient}</p>;
-            })}
-          </div>
-        </div>
-      );
-    });
-  };
+
   return (
     <>
       <Box m={1} display="flex" justifyContent="space-between">
@@ -52,7 +35,7 @@ function Recipes() {
         </Button>
       </Box>
       {recipeList ? (
-        renderRecipeList()
+        <RecipeList recipeList={recipeList} />
       ) : (
         <div className="ui active loader"></div>
       )}
