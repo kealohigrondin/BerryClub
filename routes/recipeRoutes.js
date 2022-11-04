@@ -50,4 +50,18 @@ module.exports = (app) => {
    * get one recipe by id
    */
   app.get("/api/recipe/:id", requireLogin, (req, res) => {});
+
+  /**
+   * remove recipeIDs from user if the recipe ID doesn't exist in recipe DB
+   */
+  app.get("/api/recipes/cleanlist", requireLogin, async (req, res) => {
+    const recipeList = req.user.recipes;
+    console.log(recipeList);
+    const fullRecipes = await Recipe.find({
+      _id: { $in: req.user.recipes },
+    });
+    const removedRecipes = await Recipe.
+
+    res.send(fullRecipes);
+  });
 };
