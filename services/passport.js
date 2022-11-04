@@ -34,7 +34,6 @@ const gStrategy = new GoogleStrategy(
     //check that the user doesn't exist yet
     const existingUser = await User.findOne({ googleId: id });
     if (existingUser) {
-      console.log(existingUser);
       return done(null, existingUser); //no error, return with the existing user
     }
     console.log("creating new user for ", displayName);

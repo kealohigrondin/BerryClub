@@ -23,8 +23,8 @@ function RecipeList({ recipeList }) {
             <Grid item xs={12} sm={8}>
               <h4>Instructions</h4>
               <ol>
-                {recipe.instructions.map((instruction) => {
-                  return <li key={instruction}>{instruction}</li>;
+                {recipe.instructions.map((instruction, index) => {
+                  return <li key={`${instruction}-${index}`}>{instruction}</li>;
                 })}
               </ol>
             </Grid>
@@ -35,15 +35,15 @@ function RecipeList({ recipeList }) {
                   return <li key={ingredient}>{ingredient}</li>;
                 })}
               </ul>
-              <Button
-                variant="outlined"
-                color="success"
-                sx={{ float: "right" }}
-              >
-                Add to basket
-              </Button>
             </Grid>
           </Grid>
+          <Button
+            variant="outlined"
+            color="success"
+            sx={{ float: "right", marginBottom: "1.5em" }}
+          >
+            Add to basket
+          </Button>
         </AccordionDetails>
       </Accordion>
     );
