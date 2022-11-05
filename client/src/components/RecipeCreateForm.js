@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import {
   Alert,
@@ -127,8 +128,8 @@ function RecipeCreateForm() {
                   </Box>
                 </Grid>
                 {fields.map((item, i) => (
-                  <>
-                    <Grid item xs={8} sm={6}>
+                  <React.Fragment key={i}>
+                    <Grid item xs={12} sm={6}>
                       <Controller
                         name={`ingredients[${i}].name`}
                         defaultValue={""}
@@ -144,7 +145,7 @@ function RecipeCreateForm() {
                         )}
                       />
                     </Grid>
-                    <Grid item xs={4} sm={4}>
+                    <Grid item xs={6} sm={3}>
                       <Controller
                         name={`ingredients[${i}].quantity`}
                         defaultValue={""}
@@ -160,7 +161,7 @@ function RecipeCreateForm() {
                         )}
                       />
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={3} sm={2}>
                       <Controller
                         name={`ingredients[${i}].unit`}
                         defaultValue={"None"}
@@ -176,7 +177,17 @@ function RecipeCreateForm() {
                         )}
                       />
                     </Grid>
-                  </>
+                    <Grid item xs={3} sm={1}>
+                      <Button
+                        onClick={() => remove(i)}
+                        variant="outlined"
+                        color="error"
+                        sx={{ marginTop: "0.75em" }}
+                      >
+                        <DeleteIcon />
+                      </Button>
+                    </Grid>
+                  </React.Fragment>
                 ))}
               </Grid>
 
