@@ -6,7 +6,7 @@ const Recipe = mongoose.model("recipes");
 module.exports = (app) => {
   /**
    * PURPOSE: Create a recipe and add to db
-   * input: takes in a recipe object {name: String, ingredients: [String], instruction: [String]}
+   * input: takes in a recipe object {name: String, ingredients: [Object], instruction: [String]}
    * output: user with ref to recipe just created, existing recipe, or current user if they already saved the recipe
    */
   app.post("/api/recipe", requireLogin, async (req, res) => {
