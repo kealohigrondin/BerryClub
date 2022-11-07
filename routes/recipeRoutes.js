@@ -11,10 +11,13 @@ module.exports = (app) => {
    */
   app.post("/api/recipe", requireLogin, async (req, res) => {
     const { name, ingredients, instructions } = req.body;
+    const creator = req.user._id;
+    console.log(req.user._id);
     const existingRecipe = await Recipe.findOne({
       name,
       ingredients,
       instructions,
+      creator,
     });
     //add ref to existing recipe to the user that they don't already have
     if (existingRecipe && !req.user.recipes.includes(existingRecipe._id)) {
@@ -25,7 +28,7 @@ module.exports = (app) => {
       res.send(req.user);
     } else {
       //create recipe and add ref to that to user
-      const recipe = new Recipe(req.body);
+      const recipe = new Recipe({ name, ingredients, instructions, creator });
       console.log("INCOMING RECIPE", req.body);
       console.log("NEW RECIPE ADDED", recipe);
       recipe.save();
@@ -60,8 +63,6 @@ module.exports = (app) => {
     const fullRecipes = await Recipe.find({
       _id: { $in: req.user.recipes },
     });
-    const removedRecipes = await Recipe.
-
-    res.send(fullRecipes);
+    const removedRecipes = await Recipe.res.send(fullRecipes);
   });
 };

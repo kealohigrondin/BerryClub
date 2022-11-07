@@ -8,9 +8,12 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function RecipeList({ recipeList }) {
+  const onChange = (e, expanded) => {
+    //eventually only render the accordiondetails when the accordion is opened
+  };
   return recipeList.map((recipe, index) => {
     return (
-      <Accordion key={recipe._id}>
+      <Accordion key={recipe._id} onChange={onChange}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls={`panel${index}-content`}
@@ -32,7 +35,11 @@ function RecipeList({ recipeList }) {
               <h4>Ingredients</h4>
               <ul>
                 {recipe.ingredients.map((ingredient) => {
-                  return <li key={ingredient}>{ingredient}</li>;
+                  return (
+                    <li key={ingredient.name}>
+                      {ingredient.quantity} {ingredient.unit} {ingredient.name}
+                    </li>
+                  );
                 })}
               </ul>
             </Grid>

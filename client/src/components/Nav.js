@@ -50,7 +50,7 @@ function Nav() {
         <Toolbar disableGutters>
           {/* Shows on desktop */}
           <Button
-          id="desktopTitle"
+            id="desktopTitle"
             sx={{
               mr: 6,
               display: { xs: "none", md: "flex" },
@@ -61,7 +61,9 @@ function Nav() {
               textDecoration: "none",
             }}
           >
-            🍇 Berry Club
+            <Link to="dashboard" style={{ color: "white" }}>
+              🍇 Berry Club
+            </Link>
           </Button>
           <Box
             id="desktopNav"
@@ -78,7 +80,6 @@ function Nav() {
             ))}
           </Box>
 
-          
           <Box
             id="mobileNav"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
@@ -118,8 +119,6 @@ function Nav() {
               ))}
             </Menu>
           </Box>
-
-          
 
           <Typography
             id="mobileTitle"

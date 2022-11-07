@@ -21,7 +21,7 @@ import { useDispatch } from "react-redux";
 import { GET_CURRENT_USER } from "../actions/types";
 
 const UNITS = [
-  "None",
+  "",
   "g",
   "kg",
   "Tsp",
@@ -35,6 +35,8 @@ const UNITS = [
   "fluid oz",
   "oz",
   "lb",
+  "(to taste)",
+  "(dash)",
 ];
 
 function RecipeCreateForm() {
@@ -51,21 +53,23 @@ function RecipeCreateForm() {
 
   const onSubmit = async (data) => {
     //clean ingredients and instructions lists to be [String]
-    // ingredients = ingredients.split("\n").filter((str) => str !== "");
-    // instructions = instructions.split("\n").filter((str) => str !== "");
-    console.log(data);
-    // const res = await axios.post("/api/recipe", {
-    //   name,
-    //   ingredients,
-    //   instructions,
-    // });
-    // dispatch({ type: GET_CURRENT_USER, payload: res.data });
-    // console.log(res);
-    // if (res.status === 200) {
-    //   setSendSuccess(true);
-    // } else {
-    //   setSendSuccess(false);
-    // }
+    const instructions = data.instructions
+      .split("\n")
+      .filter((str) => str !== "");
+    const newRecipe = {
+      name: data.name,
+      ingredients: data.ingredients,
+      instructions,
+    };
+    console.log(newRecipe);
+    const res = await axios.post("/api/recipe", newRecipe);
+    dispatch({ type: GET_CURRENT_USER, payload: res.data });
+    console.log(res);
+    if (res.status === 200) {
+      setSendSuccess(true);
+    } else {
+      setSendSuccess(false);
+    }
     setOpenSnackbar(true);
     reset();
   };
@@ -128,8 +132,42 @@ function RecipeCreateForm() {
                   </Box>
                 </Grid>
                 {fields.map((item, i) => (
-                  <React.Fragment key={i}>
-                    <Grid item xs={12} sm={6}>
+                  // key must be item.id and remove must use i
+                  //in order to properly remove the ingredient from the list
+                  <React.Fragment key={item.id}>
+                    <Grid item xs={6} sm={2}>
+                      <Controller
+                        name={`ingredients[${i}].quantity`}
+                        defaultValue={""}
+                        control={control}
+                        render={({ field }) => (
+                          <TextField
+                            {...field}
+                            type="number"
+                            placeholder="Enter quantity"
+                            variant="outlined"
+                            sx={{ width: "100%" }}
+                          />
+                        )}
+                      />
+                    </Grid>
+                    <Grid item xs={3} sm={2}>
+                      <Controller
+                        name={`ingredients[${i}].unit`}
+                        defaultValue={""}
+                        control={control}
+                        render={({ field }) => (
+                          <Select {...field} sx={{ width: "100%" }}>
+                            {UNITS.map((unit) => (
+                              <MenuItem key={unit} value={unit}>
+                                {unit}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        )}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={7}>
                       <Controller
                         name={`ingredients[${i}].name`}
                         defaultValue={""}
@@ -142,38 +180,6 @@ function RecipeCreateForm() {
                             sx={{ width: "100%" }}
                             required
                           />
-                        )}
-                      />
-                    </Grid>
-                    <Grid item xs={6} sm={3}>
-                      <Controller
-                        name={`ingredients[${i}].quantity`}
-                        defaultValue={""}
-                        control={control}
-                        render={({ field }) => (
-                          <TextField
-                            {...field}
-                            placeholder="Enter quantity"
-                            variant="outlined"
-                            sx={{ width: "100%" }}
-                            required
-                          />
-                        )}
-                      />
-                    </Grid>
-                    <Grid item xs={3} sm={2}>
-                      <Controller
-                        name={`ingredients[${i}].unit`}
-                        defaultValue={"None"}
-                        control={control}
-                        render={({ field }) => (
-                          <Select {...field} sx={{ width: "100%" }}>
-                            {UNITS.map((unit) => (
-                              <MenuItem key={unit} value={unit}>
-                                {unit}
-                              </MenuItem>
-                            ))}
-                          </Select>
                         )}
                       />
                     </Grid>
