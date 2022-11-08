@@ -10,6 +10,7 @@ import Welcome from "./components/pages/Welcome";
 import Dashboard from "./components/pages/Dashboard";
 import Recipes from "./components/pages/Recipes";
 import RecipeCreate from "./components/pages/RecipeCreate";
+import RecipeEdit from "./components/pages/RecipeEdit";
 import Cart from "./components/pages/Cart";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/recipes" element={<Recipes />} />
           <Route path="/recipe/create" element={<RecipeCreate />} />
+          <Route path="/recipe/edit/:recipeId" element={<RecipeEdit />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </Container>

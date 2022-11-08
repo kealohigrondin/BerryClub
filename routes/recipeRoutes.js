@@ -53,7 +53,13 @@ module.exports = (app) => {
   /**
    * get one recipe by id
    */
-  app.get("/api/recipe/:id", requireLogin, (req, res) => {});
+  app.get("/api/recipe/:recipeId", requireLogin, async (req, res) => {
+    const recipeId = req.params.recipeId;
+    const recipe = await Recipe.findById(recipeId);
+    console.log(recipe);
+    if (recipe) res.send(recipe);
+    else res.status(422);
+  });
 
   /**
    * remove recipeIDs from user if the recipe ID doesn't exist in recipe DB

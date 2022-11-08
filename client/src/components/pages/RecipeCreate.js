@@ -3,7 +3,7 @@ import RecipeCreateForm from "../RecipeCreateForm";
 function RecipeCreate() {
   return (
     <>
-      <RecipeCreateForm />
+      <RecipeCreateForm title="Create" defaultValues={null} />
     </>
   );
 }

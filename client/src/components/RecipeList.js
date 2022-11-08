@@ -9,8 +9,10 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function RecipeList() {
+  const navigate = useNavigate();
   const currentUserId = useSelector((state) => state.auth._id);
   const [recipeList, setRecipeList] = useState();
   const [loadError, setLoadError] = useState(false);
@@ -98,6 +100,7 @@ function RecipeList() {
                       marginBottom: "1.5em",
                       marginLeft: "1em",
                     }}
+                    onClick={() => navigate(`/recipe/edit/${recipe._id}`)}
                   >
                     Edit
                   </Button>
