@@ -5,18 +5,20 @@ import RecipeCreateForm from "../RecipeCreateForm";
 
 function RecipeEdit() {
   const { recipeId } = useParams();
-  const [recipe, setRecipe] = useState();
+  const [recipe, setRecipe] = useState(false);
 
   useEffect(() => {
-    console.log(recipeId);
     const fetchRecipe = async () => {
       const res = await axios.get(`/api/recipe/${recipeId}`);
-      console.log(res.data);
       setRecipe(res.data);
     };
     fetchRecipe();
   }, []);
-  return <RecipeCreateForm defaultValues={recipe} title="Edit" />;
+  return recipe ? (
+    <RecipeCreateForm defaultValues={recipe} title="Edit" />
+  ) : (
+    <p>loading</p>
+  );
 }
 
 export default RecipeEdit;
