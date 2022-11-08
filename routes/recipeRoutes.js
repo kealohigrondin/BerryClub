@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const requireLogin = require("../middlewares/requireLogin");
 const Recipe = mongoose.model("recipes");
+
 module.exports = (app) => {
   /**
    * PURPOSE: Create a recipe and add to db

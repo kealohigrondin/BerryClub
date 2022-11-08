@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import reduxThunk from "redux-thunk";
 
 import reducers from "./reducers";
-import App from "./components/App";
+import App from "./App";
 
 ///// Remove later --- for development only /////
 import axios from "axios";

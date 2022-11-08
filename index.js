@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const keys = require("./config/keys.js");
 require("./models/User");
 require("./models/Recipe");
+require("./models/Cart");
 require("./services/passport"); //doesn't need to be assigned to anything since the file isn't returning anything. Just need to attach it to this file for usage
 
 const app = express();
@@ -33,6 +34,7 @@ mongoose.connect(keys.mongoURI);
 /////Attach routes to express app/////
 require("./routes/authRoutes")(app);
 require("./routes/recipeRoutes")(app);
+require("./routes/cartRoutes")(app);
 
 /////In prod, serve the client also/////
 if (process.env.NODE_ENV === "production") {

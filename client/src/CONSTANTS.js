@@ -1,0 +1,18 @@
+export const UNITS = [
+  "",
+  "g",
+  "kg",
+  "Tsp",
+  "Tbsp",
+  "cup",
+  "pint",
+  "quart",
+  "gallon",
+  "mL",
+  "liter",
+  "fluid oz",
+  "oz",
+  "lb",
+  "(to taste)",
+  "(dash)",
+];

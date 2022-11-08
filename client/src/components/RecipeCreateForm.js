@@ -9,8 +9,6 @@ import {
   Grid,
   Snackbar,
   TextField,
-  FormControl,
-  InputLabel,
   Select,
   Box,
   MenuItem,
@@ -19,25 +17,7 @@ import { useForm, Controller, useFieldArray } from "react-hook-form";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { GET_CURRENT_USER } from "../actions/types";
-
-const UNITS = [
-  "",
-  "g",
-  "kg",
-  "Tsp",
-  "Tbsp",
-  "cup",
-  "pint",
-  "quart",
-  "gallon",
-  "mL",
-  "liter",
-  "fluid oz",
-  "oz",
-  "lb",
-  "(to taste)",
-  "(dash)",
-];
+import { UNITS } from "../CONSTANTS";
 
 function RecipeCreateForm() {
   const dispatch = useDispatch();
@@ -61,10 +41,8 @@ function RecipeCreateForm() {
       ingredients: data.ingredients,
       instructions,
     };
-    console.log(newRecipe);
     const res = await axios.post("/api/recipe", newRecipe);
     dispatch({ type: GET_CURRENT_USER, payload: res.data });
-    console.log(res);
     if (res.status === 200) {
       setSendSuccess(true);
     } else {
@@ -78,7 +56,7 @@ function RecipeCreateForm() {
     if (ingredientCount > fields.length) {
       append({});
     }
-  }, [ingredientCount]);
+  }, [append, fields.length, ingredientCount]);
 
   return (
     <>
@@ -135,7 +113,7 @@ function RecipeCreateForm() {
                   // key must be item.id and remove must use i
                   //in order to properly remove the ingredient from the list
                   <React.Fragment key={item.id}>
-                    <Grid item xs={6} sm={2}>
+                    <Grid item xs={9} sm={2}>
                       <Controller
                         name={`ingredients[${i}].quantity`}
                         defaultValue={""}
@@ -167,7 +145,7 @@ function RecipeCreateForm() {
                         )}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={7}>
+                    <Grid item xs={10} sm={7}>
                       <Controller
                         name={`ingredients[${i}].name`}
                         defaultValue={""}
@@ -183,7 +161,7 @@ function RecipeCreateForm() {
                         )}
                       />
                     </Grid>
-                    <Grid item xs={3} sm={1}>
+                    <Grid item xs={2} sm={1}>
                       <Button
                         onClick={() => remove(i)}
                         variant="outlined"
