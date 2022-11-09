@@ -17,7 +17,7 @@ import { useForm, Controller, useFieldArray } from "react-hook-form";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { GET_CURRENT_USER } from "../actions/types";
-import { UNITS } from "../CONSTANTS";
+import { UNITS } from "../utils/CONSTANTS";
 
 function RecipeCreateForm({ defaultValues, title }) {
   const dispatch = useDispatch();
@@ -175,9 +175,9 @@ function RecipeCreateForm({ defaultValues, title }) {
                         control={control}
                         render={({ field }) => (
                           <Select {...field} sx={{ width: "100%" }}>
-                            {UNITS.map((unit) => (
-                              <MenuItem key={unit} value={unit}>
-                                {unit}
+                            {UNITS.map(({ label }) => (
+                              <MenuItem key={label} value={label}>
+                                {label}
                               </MenuItem>
                             ))}
                           </Select>

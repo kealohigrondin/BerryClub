@@ -1,4 +1,6 @@
 const passport = require("passport");
+const mongoose = require("mongoose");
+const Cart = mongoose.model("cart");
 
 module.exports = (app) => {
   //passport knows to reference the GoogleStrategy as 'google' (as referenced below)
@@ -17,7 +19,15 @@ module.exports = (app) => {
   app.get(
     "/auth/google/callback",
     passport.authenticate("google"),
-    (req, res) => {
+    async (req, res) => {
+      //create a cart for the user
+      const newCart = await Cart.findOneAndUpdate(
+        {
+          _user: req.user._id,
+        },
+        { items: [] },
+        { upsert: true }
+      );
       res.redirect("/dashboard");
     }
   );

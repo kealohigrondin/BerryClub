@@ -36,7 +36,7 @@ function CartList() {
 
   return (
     <>
-      {items ? (
+      {items && loaded ? (
         <TableContainer component={Paper}>
           <Table size="small">
             <TableHead></TableHead>
