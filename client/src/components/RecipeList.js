@@ -23,6 +23,7 @@ function RecipeList() {
 
   const onAddToCart = async (ingredients) => {
     //add each ingredient to user's cart
+    //convert each ingredient here to g or ml before passing to db
     const res = await axios.post("/api/cart", ingredients);
     console.log(res);
     console.log(ingredients);

@@ -25,6 +25,7 @@ function CartList() {
     const fetchCart = async () => {
       if (!loaded) {
         const res = await axios.get("/api/cart");
+        //unconvert all quantities here
         dispatch({ type: GET_CART, payload: res.data });
         if (res) {
           setLoaded(true);
