@@ -35,6 +35,9 @@ function CartList() {
     fetchCart();
   });
 
+  if (loaded && items.length === 0) {
+    return <p>Empty cart</p>;
+  }
   return (
     <>
       {items && loaded ? (

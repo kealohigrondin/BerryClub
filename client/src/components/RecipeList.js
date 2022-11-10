@@ -10,10 +10,11 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { convert } from "../utils/convert";
 
 function RecipeList() {
   const navigate = useNavigate();
-  const currentUserId = useSelector((state) => state.auth._id);
+  const currentUserId = useSelector((state) => state.auth?._id);
   const [recipeList, setRecipeList] = useState();
   const [loadError, setLoadError] = useState(false);
 
@@ -22,11 +23,16 @@ function RecipeList() {
   };
 
   const onAddToCart = async (ingredients) => {
-    //add each ingredient to user's cart
     //convert each ingredient here to g or ml before passing to db
+    for (let i = 0; i < ingredients.length; i++) {
+      ingredients[i].quantity = convert(
+        ingredients[i].quantity,
+        ingredients[i].unit
+      );
+    }
+    //add each ingredient to user's cart
     const res = await axios.post("/api/cart", ingredients);
     console.log(res);
-    console.log(ingredients);
   };
 
   useEffect(() => {
