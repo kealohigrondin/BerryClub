@@ -14,19 +14,25 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
-import { GET_CART } from "../actions/types";
+import { SET_CART } from "../actions/types";
 
 function CartList() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart?.items);
   const [loaded, setLoaded] = useState(false);
 
+  const deleteItem = async (name) => {
+    console.log("deleting", name);
+    const res = await axios.post("/api/cart/remove", { data: name });
+    dispatch({ type: SET_CART, payload: res.data });
+  };
+
   useEffect(() => {
     const fetchCart = async () => {
       if (!loaded) {
         const res = await axios.get("/api/cart");
         //unconvert all quantities here
-        dispatch({ type: GET_CART, payload: res.data });
+        dispatch({ type: SET_CART, payload: res.data });
         if (res) {
           setLoaded(true);
         }
@@ -59,7 +65,10 @@ function CartList() {
                     </Button>
                   </TableCell>
                   <TableCell sx={{ padding: "0", width: "1%" }}>
-                    <Button sx={{ minWidth: "0px" }}>
+                    <Button
+                      sx={{ minWidth: "0px" }}
+                      onClick={() => deleteItem(name)}
+                    >
                       <DeleteIcon sx={{ color: "red" }} />
                     </Button>
                   </TableCell>

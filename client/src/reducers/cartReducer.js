@@ -1,9 +1,9 @@
-import { GET_CART } from "../actions/types";
+import { SET_CART } from "../actions/types";
 import { unConvert } from "../utils/unConvert";
 
 export default function cartReducer(state = null, action) {
   switch (action.type) {
-    case GET_CART:
+    case SET_CART:
       //convert quantities back
       for (let i = 0; i < action.payload.items.length; i++) {
         action.payload.items[i].quantity = unConvert(

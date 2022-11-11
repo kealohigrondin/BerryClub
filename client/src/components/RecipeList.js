@@ -32,7 +32,6 @@ function RecipeList() {
     }
     //add each ingredient to user's cart
     const res = await axios.post("/api/cart", ingredients);
-    console.log(res);
   };
 
   useEffect(() => {
