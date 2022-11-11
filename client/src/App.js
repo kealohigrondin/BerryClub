@@ -29,7 +29,7 @@ function App() {
     <div style={{ height: "100vh", background: "snow" }}>
       <Nav />
       <Container
-        maxWidth="lg"
+        maxWidth="md"
         sx={{
           paddingTop: { xs: "2em", sm: "4em" },
           paddingLeft: { xs: "0.5em", sm: "1em" },
