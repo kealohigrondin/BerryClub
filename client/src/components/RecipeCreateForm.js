@@ -73,9 +73,6 @@ function RecipeCreateForm({ defaultValues, title }) {
   };
 
   useEffect(() => {
-    console.log("useEffect");
-    console.log("default length", defaultValues?.ingredients?.length);
-    console.log("fields length", fields.length);
     if (defaultValues?.ingredients?.length > fields.length) {
       defaultValues?.ingredients?.forEach(() => {
         append({});
