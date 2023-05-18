@@ -14,7 +14,7 @@ function Dashboard() {
   return (
     <>
       <h1>Secure Dashboard </h1>
-      <p>Hello, {auth?.name.givenName}</p>
+      <p>Hello, {auth?.name?.givenName}</p>
       <h2>My Top Recipes</h2>
       <RecipeList />
     </>
