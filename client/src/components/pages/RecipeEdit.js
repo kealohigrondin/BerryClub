@@ -13,7 +13,7 @@ function RecipeEdit() {
       setRecipe(res.data);
     };
     fetchRecipe();
-  }, []);
+  }, [recipeId]);
   return recipe ? (
     <RecipeCreateForm defaultValues={recipe} title="Edit" />
   ) : (
