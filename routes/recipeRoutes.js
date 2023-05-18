@@ -15,13 +15,13 @@ module.exports = (app) => {
     const creator = req.user._id;
     //we are editing a recipe
     if (req.body._id) {
-      console.log("UPDATING RECIPE");
+      console.debug("UPDATING RECIPE");
       const updatedRecipe = await Recipe.findByIdAndUpdate(
         { _id: req.body._id },
         { $set: { name, instructions, ingredients } },
         { new: true }
       );
-      console.log(updatedRecipe);
+      console.debug(updatedRecipe);
       res.send(updatedRecipe);
     } else {
       const existingRecipe = await Recipe.findOne({
@@ -45,7 +45,7 @@ module.exports = (app) => {
       } else {
         //create recipe and add ref to that to user
         const recipe = new Recipe({ name, ingredients, instructions, creator });
-        console.log("NEW RECIPE ADDED", recipe);
+        console.debug("NEW RECIPE ADDED", recipe);
         recipe.save();
         req.user.recipes.push(recipe._id);
 
@@ -71,7 +71,7 @@ module.exports = (app) => {
   app.get("/api/recipe/:recipeId", requireLogin, async (req, res) => {
     const recipeId = req.params.recipeId;
     const recipe = await Recipe.findById(recipeId);
-    console.log(recipe);
+    console.debug(recipe);
     if (recipe) res.send(recipe);
     else res.status(422);
   });
@@ -81,7 +81,7 @@ module.exports = (app) => {
    */
   app.get("/api/recipes/cleanlist", requireLogin, async (req, res) => {
     const recipeList = req.user.recipes;
-    console.log(recipeList);
+    console.debug(recipeList);
     const fullRecipes = await Recipe.find({
       _id: { $in: req.user.recipes },
     });

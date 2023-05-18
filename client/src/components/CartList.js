@@ -22,7 +22,7 @@ function CartList() {
   const [loaded, setLoaded] = useState(false);
 
   const deleteItem = async (name) => {
-    console.log("deleting", name);
+    console.debug("deleting", name);
     const res = await axios.post("/api/cart/remove", { data: name });
     dispatch({ type: SET_CART, payload: res.data });
   };
@@ -60,8 +60,8 @@ function CartList() {
                     {quantity} {unit}
                   </TableCell>
                   <TableCell sx={{ padding: "0", width: "1%" }}>
-                    <Button sx={{ minWidth: "0px" }}>
-                      <EditIcon sx={{ color: "orange" }} />
+                    <Button sx={{ minWidth: "0px" }} disabled={true}>
+                      <EditIcon sx={{ color: "lightGrey" }} />
                     </Button>
                   </TableCell>
                   <TableCell sx={{ padding: "0", width: "1%" }}>

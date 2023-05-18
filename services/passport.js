@@ -13,7 +13,7 @@ passport.serializeUser((user, done) => {
 //turn an id into a user
 passport.deserializeUser((id, done) => {
   User.findById(id).then((user) => {
-    console.log(`User ${id} found`);
+    console.debug(`User ${id} found`);
     done(null, user); //goes to next middleware/actual request function with the user
   });
 });
@@ -36,7 +36,7 @@ const gStrategy = new GoogleStrategy(
     if (existingUser) {
       return done(null, existingUser); //no error, return with the existing user
     }
-    console.log("creating new user for ", displayName);
+    console.debug("creating new user for ", displayName);
     //creates a new user and adds to mongodb
     const newUser = await new User({ googleId: id, name, displayName }).save();
     done(null, newUser);

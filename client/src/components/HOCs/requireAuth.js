@@ -9,7 +9,7 @@ export default function requireAuth(ChildComponent) {
     const { pathname } = useLocation();
 
     if (auth === false) {
-      console.log("requireAuth HOC blocked navigation to", pathname);
+      console.debug("requireAuth HOC blocked navigation to", pathname);
       return <Navigate to="/" />;
     }
 

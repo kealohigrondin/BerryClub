@@ -55,7 +55,7 @@ module.exports = (app) => {
       { $pull: { items: { name: req.body.data } } }, //pulls out items matching name === req.body.data
       { new: true } //required to return updated cart to 'cart' variable
     );
-    console.log(cart);
+    console.debug(cart);
     res.send(cart);
   });
 };

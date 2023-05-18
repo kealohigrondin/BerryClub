@@ -40,16 +40,16 @@ function RecipeCreateForm({ defaultValues, title }) {
 
   const resetForm = () => {
     //set number of ingredients to correct length
-    console.log("ingredientCount: ", ingredientCount);
-    console.log("default length: ", defaultValues?.ingredients?.length);
+    console.debug("ingredientCount: ", ingredientCount);
+    console.debug("default length: ", defaultValues?.ingredients?.length);
     setIngredientCount(1);
-    console.log("ingredientCount: ", ingredientCount);
+    console.debug("ingredientCount: ", ingredientCount);
     reset();
   };
 
   const onSubmit = async (data) => {
     //clean ingredients and instructions lists to be [String]
-    console.log("SUBMITTED DATA FROM FORM: ", data);
+    console.debug("SUBMITTED DATA FROM FORM: ", data);
     const instructions = data.instructions
       .split("\n")
       .filter((str) => str !== "");
@@ -82,7 +82,7 @@ function RecipeCreateForm({ defaultValues, title }) {
     if (ingredientCount > fields.length) {
       append({});
     }
-    console.log("after", fields.length);
+    console.debug("after", fields.length);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ingredientCount, defaultValues]);
 

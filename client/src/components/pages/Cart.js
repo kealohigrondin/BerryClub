@@ -14,7 +14,7 @@ function Cart() {
   };
   const addItem = () => {
     setOpen(false);
-    console.log("adding item");
+    console.debug("adding item");
   };
   return (
     <>
