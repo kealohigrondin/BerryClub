@@ -38,6 +38,7 @@ function RecipeCreateForm({ defaultValues, title }) {
     defaultValues?.ingredients?.length || 1
   );
 
+  //hello
   // const resetForm = () => {
   //   //set number of ingredients to correct length
   //   console.debug("ingredientCount: ", ingredientCount);
