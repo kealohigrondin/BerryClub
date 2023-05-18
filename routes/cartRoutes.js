@@ -5,7 +5,7 @@ const Cart = mongoose.model("cart");
 module.exports = (app) => {
   /**
    * get a user's cart
-   * input: none
+   * input: none (gets user._id from auth cookie)
    * output: user's cart
    */
   app.get("/api/cart", requireLogin, async (req, res) => {
@@ -28,10 +28,14 @@ module.exports = (app) => {
           $inc: { "items.$[element].quantity": quantity },
           $set: { "items.$[element].unit": unit },
         }, //$inc (increment) the element's quantity by quantity
-        { arrayFilters: [{ "element.name": name.toUpperCase() }], upsert: true } //where element.name === name, if it doesn't match, then upsert into items
+        {
+          arrayFilters: [{ "element.name": name.toUpperCase() }],
+          upsert: false,
+        } //where element.name === name, if it doesn't match, then upsert into items
       );
-      //if it wasn't added in the update step, add it now
-      if (!cart.items.some((el) => el.name === name)) {
+
+      //if the item name !(in cart.items), add it now (make sure they're both toUpper'ed)
+      if (!cart.items.some((el) => el.name === name.toUpperCase())) {
         cart.items.push({ name: name.toUpperCase(), quantity, unit });
         cart = await cart.save();
       }
