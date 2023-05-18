@@ -35,7 +35,6 @@ jobs:
           rm -r client/src
           rm -r client/public
           rm -r node_modules
-          rm
           file *
         
       - name: Zip artifact for deployment
