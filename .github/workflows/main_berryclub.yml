@@ -27,6 +27,22 @@ jobs:
           npm run build --if-present
           npm run ci-postbuild
 
+
+      - name: list directory, remove node_modules
+        run: |
+          file *
+          rm -r client/node_modules
+          rm -r client/src
+          rm -r client/public
+          file *
+        
+      - name: Zip artifact for deployment
+        run: zip release.zip ./* -r
+
+      - name: list directory
+        run: |
+          file *
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
