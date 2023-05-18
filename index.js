@@ -38,6 +38,7 @@ require("./routes/cartRoutes")(app);
 
 /////In prod, serve the client also/////
 if (process.env.NODE_ENV === "production") {
+  console.debug("in PROD environment");
   app.use(express.static("client/build"));
   const path = require("path");
   //if we get a request for a route we don't know (in the express or client app), serve up index.html

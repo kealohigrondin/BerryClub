@@ -4,10 +4,7 @@ const Cart = mongoose.model("cart");
 
 module.exports = (app) => {
   //passport knows to reference the GoogleStrategy as 'google' (as referenced below)
-  //email is one of many permissions we can ask google for (could as for contactlist, photos, etc)
-  app.get("/", (req, res) => {
-    res.send({ hello: "world" });
-  });
+  //email is one of many permissions we can ask google for (could as for contactlist, photos, etc.
 
   app.get(
     "/auth/google",
@@ -29,6 +26,8 @@ module.exports = (app) => {
         { upsert: true }
       );
       res.redirect("/dashboard");
+    }, (err) => {
+      console.log(err);
     }
   );
 
