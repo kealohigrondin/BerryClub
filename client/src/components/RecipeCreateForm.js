@@ -38,14 +38,14 @@ function RecipeCreateForm({ defaultValues, title }) {
     defaultValues?.ingredients?.length || 1
   );
 
-  const resetForm = () => {
-    //set number of ingredients to correct length
-    console.debug("ingredientCount: ", ingredientCount);
-    console.debug("default length: ", defaultValues?.ingredients?.length);
-    setIngredientCount(1);
-    console.debug("ingredientCount: ", ingredientCount);
-    reset();
-  };
+  // const resetForm = () => {
+  //   //set number of ingredients to correct length
+  //   console.debug("ingredientCount: ", ingredientCount);
+  //   console.debug("default length: ", defaultValues?.ingredients?.length);
+  //   setIngredientCount(1);
+  //   console.debug("ingredientCount: ", ingredientCount);
+  //   reset();
+  // };
 
   const onSubmit = async (data) => {
     //clean ingredients and instructions lists to be [String]
