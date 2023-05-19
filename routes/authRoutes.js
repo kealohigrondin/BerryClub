@@ -15,17 +15,14 @@ module.exports = (app) => {
   //exchanges a code received from google in the /auth/google callback and gets user info
   app.get(
     "/auth/google/callback",
-   
+
     passport.authenticate("google"),
     async (req, res) => {
       //create a cart for the user
-      const newCart = await Cart.findOneAndUpdate(
-        {
-          _user: req.user._id,
-        },
-        { items: [] },
-        { upsert: true }
-      );
+      const existingCart = await Cart.findOne({ _user: req.user._id });
+      if (!existingCart) {
+        await new Cart({ _user: req.user._id, items: [] }).save();
+      }
       res.redirect("/dashboard");
     }
   );

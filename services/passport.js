@@ -13,7 +13,6 @@ passport.serializeUser((user, done) => {
 //turn an id into a user
 passport.deserializeUser((id, done) => {
   User.findById(id).then((user) => {
-    console.debug(`User ${id} found`);
     done(null, user); //goes to next middleware/actual request function with the user
   });
 });
@@ -32,8 +31,7 @@ const gStrategy = new GoogleStrategy(
   async (accessToken, refreshToken, { id, name, displayName }, done) => {
     //callback function that runs after auth/google/callback gets a result from google
     //check that the user doesn't exist yet
-    console.log("returned from google oauth screen");
-    console.log(`id: ${id}, displayName: ${displayName}`);
+    console.log(`User coming from google oauth:\nid: ${id}, displayName: ${displayName}`);
     const existingUser = await User.findOne({ googleId: id });
     if (existingUser) {
       return done(null, existingUser); //no error, return with the existing user
