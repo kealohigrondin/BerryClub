@@ -33,9 +33,7 @@ const gStrategy = new GoogleStrategy(
     //callback function that runs after auth/google/callback gets a result from google
     //check that the user doesn't exist yet
     console.log("returned from google oauth screen");
-    console.log(`id: ${id}\n
-    name: ${name}\n
-    displayName: ${displayName}`);
+    console.log(`id: ${id}, displayName: ${displayName}`);
     const existingUser = await User.findOne({ googleId: id });
     if (existingUser) {
       return done(null, existingUser); //no error, return with the existing user
