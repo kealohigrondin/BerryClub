@@ -1,11 +1,11 @@
 import { Grid, Card, CardContent, Button } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../redux/hooks";
 import { Navigate } from "react-router-dom";
 
 export default function Welcome() {
-  const auth = useSelector((state) => state.auth);
+  const auth = useAppSelector((state) => state.auth);
 
   return auth === false ? (
     <Grid

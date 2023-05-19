@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../redux/hooks";
 import {
   AppBar,
   Toolbar,
@@ -26,27 +26,27 @@ function Nav() {
     { title: "Profile", route: "/dashboard" },
     { title: "Logout", route: "/auth/logout" },
   ];
-  const auth = useSelector((state) => state.auth);
+  const auth = useAppSelector((state: any) => state.auth);
   const navigate = useNavigate();
-  const [anchorElNav, setAnchorElNav] = useState();
-  const [anchorElUser, setAnchorElUser] = useState();
+  const [anchorElNav, setAnchorElNav] = useState<HTMLElement>();
+  const [anchorElUser, setAnchorElUser] = useState<HTMLElement>();
 
   if (!auth) {
     return null;
   }
-  const handleOpenNavMenu = (event) => {
+  const handleOpenNavMenu = (event: any) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
+  const handleOpenUserMenu = (event: any) => {
     setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+    setAnchorElNav(undefined);
   };
 
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+    setAnchorElUser(undefined);
   };
   return (
     <AppBar position="static" style={{ background: "darkslateblue" }}>

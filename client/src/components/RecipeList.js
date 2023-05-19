@@ -7,14 +7,14 @@ import {
   Button,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../redux/hooks";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { convert } from "../utils/convert.ts";
 
 function RecipeList() {
   const navigate = useNavigate();
-  const currentUserId = useSelector((state) => state.auth?._id);
+  const currentUserId = useAppSelector((state) => state.auth?._id);
   const [recipeList, setRecipeList] = useState();
   const [loadError, setLoadError] = useState(false);
 

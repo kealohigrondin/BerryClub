@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "./redux/hooks";
 import { Route, Routes } from "react-router-dom";
 import { Container } from "@mui/material";
 
@@ -15,7 +15,7 @@ import Cart from "./components/pages/Cart";
 import RecipeBrowse from "./components/pages/RecipeBrowse";
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const getCurrentUser = async () => {

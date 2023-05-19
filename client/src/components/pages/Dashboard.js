@@ -1,11 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../redux/hooks";
 
 import requireAuth from "../HOCs/requireAuth";
 import RecipeList from "../RecipeList";
 
 function Dashboard() {
-  const auth = useSelector((state) => state.auth);
+  const auth = useAppSelector((state) => state.auth);
 
   if (!auth) {
     return <div className="ui active loader"></div>;

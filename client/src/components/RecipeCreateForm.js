@@ -15,12 +15,12 @@ import {
 } from "@mui/material";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../redux/hooks";
 import { GET_CURRENT_USER } from "../actions/types";
 import { UNITS } from "../utils/CONSTANTS";
 
 function RecipeCreateForm({ defaultValues, title }) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { control, handleSubmit, reset } = useForm({
     name: defaultValues?.name,

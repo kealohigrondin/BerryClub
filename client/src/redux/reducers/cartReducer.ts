@@ -1,7 +1,7 @@
-import { SET_CART } from "../actions/types";
-import { unConvert } from "../utils/unConvert";
+import { SET_CART } from "../../actions/types";
+import { unConvert } from "../../utils/unConvert";
 
-export default function cartReducer(state = null, action) {
+export default function cartReducer(state = null, action: { type: any; payload: { items: string | any[]; }; }) {
   switch (action.type) {
     case SET_CART:
       //convert quantities back

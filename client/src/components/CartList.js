@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import {
   Button,
   Paper,
@@ -17,8 +17,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import { SET_CART } from "../actions/types";
 
 function CartList() {
-  const dispatch = useDispatch();
-  const items = useSelector((state) => state.cart?.items);
+  const dispatch = useAppDispatch();
+  const items = useAppSelector((state) => state.cart?.items);
   const [loaded, setLoaded] = useState(false);
 
   const deleteItem = async (name) => {
