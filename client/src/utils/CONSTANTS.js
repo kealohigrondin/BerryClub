@@ -15,4 +15,5 @@ export const UNITS = [
   { label: "fluid oz", conversionRate: 29.5735, type: "mL" },
   { label: "(to taste)", conversionRate: 1, type: "mL" },
   { label: "(dash)", conversionRate: 1, type: "mL" },
+  { label: "slice", conversionRate: 1, type: "g"}
 ];
