@@ -59,11 +59,11 @@ function CartList() {
                   <TableCell>
                     {quantity} {unit}
                   </TableCell>
-                  <TableCell sx={{ padding: "0", width: "1%" }}>
+                  {/* <TableCell sx={{ padding: "0", width: "1%" }}>
                     <Button sx={{ minWidth: "0px" }} disabled={true}>
                       <EditIcon sx={{ color: "lightGrey" }} />
                     </Button>
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell sx={{ padding: "0", width: "1%" }}>
                     <Button
                       sx={{ minWidth: "0px" }}

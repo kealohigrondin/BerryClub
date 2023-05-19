@@ -120,7 +120,7 @@ function RecipeList() {
                     onAddToCart(recipe.ingredients);
                   }}
                 >
-                  Add to basket
+                  Add to cart
                 </Button>
               </AccordionDetails>
             </Accordion>

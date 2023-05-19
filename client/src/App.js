@@ -12,6 +12,7 @@ import Recipes from "./components/pages/Recipes";
 import RecipeCreate from "./components/pages/RecipeCreate";
 import RecipeEdit from "./components/pages/RecipeEdit";
 import Cart from "./components/pages/Cart";
+import RecipeBrowse from "./components/pages/RecipeBrowse";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
           <Route path="/recipe/create" element={<RecipeCreate />} />
           <Route path="/recipe/edit/:recipeId" element={<RecipeEdit />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/recipes/browse" element={<RecipeBrowse />} />
         </Routes>
       </Container>
     </div>
