@@ -66,6 +66,14 @@ module.exports = (app) => {
   });
 
   /**
+   * get all recipes for all users
+   */
+  app.get("/api/recipes/all", async (req, res) => {
+    const fullRecipes = await Recipe.find();
+    res.send(fullRecipes);
+  });
+
+  /**
    * get one recipe by id
    */
   app.get("/api/recipe/:recipeId", requireLogin, async (req, res) => {
