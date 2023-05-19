@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+
 import {
   Button,
   Paper,
@@ -12,34 +12,47 @@ import {
   TableRow,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+//import EditIcon from "@mui/icons-material/Edit";
 
-import { SET_CART } from "../actions/types";
+import { unConvert } from "../utils/unConvert";
 
 function CartList() {
-  const dispatch = useAppDispatch();
-  const items = useAppSelector((state) => state.cart?.items);
+  const [items, setItems] = useState();
   const [loaded, setLoaded] = useState(false);
 
   const deleteItem = async (name) => {
     console.debug("deleting", name);
     const res = await axios.post("/api/cart/remove", { data: name });
-    dispatch({ type: SET_CART, payload: res.data });
-  };
+    if (res.data) {
+      for (let i = 0; i < res.data.items.length; i++) {
+        res.data.items[i].quantity = unConvert(
+          res.data.items[i].quantity,
+          res.data.items[i].unit
+        );
+      }
+      setItems(res.data.items);
+  }
+};
 
   useEffect(() => {
     const fetchCart = async () => {
       if (!loaded) {
         const res = await axios.get("/api/cart");
         //unconvert all quantities here
-        dispatch({ type: SET_CART, payload: res.data });
-        if (res) {
+        if (res.data) {
+          for (let i = 0; i < res.data.items.length; i++) {
+            res.data.items[i].quantity = unConvert(
+              res.data.items[i].quantity,
+              res.data.items[i].unit
+            );
+          }
+          setItems(res.data.items);
           setLoaded(true);
         }
       }
     };
     fetchCart();
-  });
+  },);
 
   if (loaded && items.length === 0) {
     return <p>Empty cart</p>;

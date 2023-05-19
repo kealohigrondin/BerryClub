@@ -4,7 +4,7 @@ import { useAppDispatch } from "./redux/hooks";
 import { Route, Routes } from "react-router-dom";
 import { Container } from "@mui/material";
 
-import { GET_CURRENT_USER } from "./actions/types";
+import { GET_CURRENT_USER } from "./redux/store";
 import Nav from "./components/Nav";
 import Welcome from "./components/pages/Welcome";
 import Dashboard from "./components/pages/Dashboard";

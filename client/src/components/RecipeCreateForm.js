@@ -16,7 +16,7 @@ import {
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import axios from "axios";
 import { useAppDispatch } from "../redux/hooks";
-import { GET_CURRENT_USER } from "../actions/types";
+import { GET_CURRENT_USER } from "../redux/store";
 import { UNITS } from "../utils/CONSTANTS";
 
 function RecipeCreateForm({ defaultValues, title }) {
