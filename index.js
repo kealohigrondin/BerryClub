@@ -29,7 +29,11 @@ app.use(passport.initialize()); //.use attaches middleware to the express app
 app.use(passport.session()); // passes data thru the middleware before hitting app
 
 /////Connect to mongoDB via mongoose/////
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI).then(res => {
+  console.log(`Connected to ${keys.mongoURI}`);
+}, (err) => {
+  console.log(`Error connecting to ${keys.mongoURI}`);
+});
 
 /////Attach routes to express app/////
 require("./routes/authRoutes")(app);
