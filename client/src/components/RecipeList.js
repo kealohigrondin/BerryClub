@@ -10,7 +10,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { convert } from "../utils/convert";
+import { convert } from "../utils/convert.ts";
 
 function RecipeList() {
   const navigate = useNavigate();

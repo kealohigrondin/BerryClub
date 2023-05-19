@@ -6,9 +6,11 @@ import { UNITS } from "./CONSTANTS";
  * @param {String} outUnit
  * @returns the given quantity converted to either g or ml
  */
-export function unConvert(quantity, unit) {
+export function unConvert(quantity: number, unit: string): number {
   const conversionRate = UNITS.find(
     ({ label }) => label.toUpperCase() === unit.toUpperCase()
-  ).conversionRate;
-  return Number((quantity / conversionRate).toFixed(4));
+  )?.conversionRate;
+
+  return conversionRate ? Number((quantity / conversionRate).toFixed(4)) : 0;
+
 }
