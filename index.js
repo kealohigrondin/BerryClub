@@ -32,7 +32,7 @@ app.use(passport.session()); // passes data thru the middleware before hitting a
 mongoose.connect(keys.mongoURI).then(res => {
   console.log(`Connected to ${keys.mongoURI}`);
 }, (err) => {
-  console.log(`Error connecting to ${keys.mongoURI}`);
+  console.error(`Error connecting to ${keys.mongoURI}`);
 });
 
 /////Attach routes to express app/////
