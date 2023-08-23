@@ -10,19 +10,25 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useAppSelector } from "../redux/hooks";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { convert } from "../utils/convert.ts";
+import { convert } from "../utils/convert";
+import { Ingredient } from "../models/ingredient";
+import { Recipe } from "../models/recipe";
+import React from "react";
 
-function RecipeList() {
+type Props = {
+  recipeRoute: string;
+}
+function RecipeList({recipeRoute}: Props) {
   const navigate = useNavigate();
   const currentUserId = useAppSelector((state) => state.auth?._id);
-  const [recipeList, setRecipeList] = useState();
-  const [loadError, setLoadError] = useState(false);
+  const [recipeList, setRecipeList] = useState<Array<Recipe>>();
+  const [loadError, setLoadError] = useState<boolean>(false);
 
-  const onChange = (e, expanded) => {
+  const onChange = (e: any, expanded: boolean) => {
     //eventually only render the accordiondetails when the accordion is opened
   };
 
-  const onAddToCart = async (ingredients) => {
+  const onAddToCart = async (ingredients: Array<Ingredient>) => {
     //convert each ingredient here to g or ml before passing to db
     for (let i = 0; i < ingredients.length; i++) {
       ingredients[i].quantity = convert(
@@ -36,8 +42,9 @@ function RecipeList() {
   };
 
   useEffect(() => {
+    console.log('Recipe route: ' + recipeRoute);
     const getRecipes = async () => {
-      axios.get("/api/recipes").then(
+      axios.get(recipeRoute).then(
         (res) => {
           if (!recipeList) {
             setRecipeList(res.data);
@@ -57,7 +64,7 @@ function RecipeList() {
   return (
     <>
       {recipeList && !loadError ? (
-        recipeList.map((recipe, index) => {
+        recipeList.map((recipe: Recipe, index: number) => {
           return (
             <Accordion key={recipe._id} onChange={onChange}>
               <AccordionSummary

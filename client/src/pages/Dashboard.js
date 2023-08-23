@@ -1,8 +1,8 @@
 import React from "react";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../redux/hooks";
 
-import requireAuth from "../HOCs/requireAuth";
-import RecipeList from "../RecipeList";
+import requireAuth from "../components/HOCs/requireAuth";
+import RecipeList from "../components/RecipeList";
 
 function Dashboard() {
   const auth = useAppSelector((state) => state.auth);

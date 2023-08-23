@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import RecipeCreateForm from "../RecipeCreateForm";
+import RecipeCreateForm from "../components/RecipeCreateForm";
 
 function RecipeEdit() {
   const { recipeId } = useParams();

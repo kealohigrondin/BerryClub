@@ -61,7 +61,7 @@ module.exports = (app) => {
    */
   app.get("/api/recipes", requireLogin, async (req, res) => {
     const fullRecipes = await Recipe.find({ _id: { $in: req.user.recipes } });
-
+    console.log(fullRecipes);
     res.send(fullRecipes);
   });
 

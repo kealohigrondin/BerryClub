@@ -1,7 +1,7 @@
 import { Box, Button, Dialog, DialogTitle, Grid } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
-import CartList from "../CartList";
+import CartList from "../components/CartList";
 import { useState } from "react";
 
 function Cart() {

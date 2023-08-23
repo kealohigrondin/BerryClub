@@ -1,4 +1,4 @@
-import RecipeCreateForm from "../RecipeCreateForm";
+import RecipeCreateForm from "../components/RecipeCreateForm";
 
 function RecipeCreate() {
   return (

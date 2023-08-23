@@ -6,13 +6,13 @@ import { Container } from "@mui/material";
 
 import { GET_CURRENT_USER } from "./redux/store";
 import Nav from "./components/Nav";
-import Welcome from "./components/pages/Welcome";
-import Dashboard from "./components/pages/Dashboard";
-import Recipes from "./components/pages/Recipes";
-import RecipeCreate from "./components/pages/RecipeCreate";
-import RecipeEdit from "./components/pages/RecipeEdit";
-import Cart from "./components/pages/Cart";
-import RecipeBrowse from "./components/pages/RecipeBrowse";
+import Welcome from "./pages/Welcome";
+import Dashboard from "./pages/Dashboard";
+import Recipes from "./pages/RecipesOwned";
+import RecipeCreate from "./pages/RecipeCreate";
+import RecipeEdit from "./pages/RecipeEdit";
+import Cart from "./pages/Cart";
+import RecipeExplore from "./pages/RecipeExplore";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -44,7 +44,8 @@ function App() {
           <Route path="/recipe/create" element={<RecipeCreate />} />
           <Route path="/recipe/edit/:recipeId" element={<RecipeEdit />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/recipes/browse" element={<RecipeBrowse />} />
+          <Route path="/recipes/explore" element={<RecipeExplore />} />
+          <Route path="*" element={<p>Page not found</p>}/>
         </Routes>
       </Container>
     </div>

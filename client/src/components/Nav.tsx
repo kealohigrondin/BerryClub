@@ -18,7 +18,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 function Nav() {
   const pages = [
-    { title: "Explore", route: "/recipes/browse" },
+    { title: "Explore", route: "/recipes/explore" },
     { title: "My cookbook", route: "/recipes" },
     { title: "Cart", route: "/cart" },
   ];

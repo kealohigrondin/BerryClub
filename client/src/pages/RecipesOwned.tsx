@@ -1,8 +1,9 @@
-import requireAuth from "../HOCs/requireAuth";
+import requireAuth from "../components/HOCs/requireAuth";
 import AddIcon from "@mui/icons-material/Add";
 import { Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import RecipeList from "../RecipeList";
+import RecipeList from "../components/RecipeList";
+import React from "react";
 
 function Recipes() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ function Recipes() {
           <span style={{ paddingLeft: "0.5em" }}>Create Recipe</span>
         </Button>
       </Box>
-      <RecipeList />
+      <RecipeList recipeRoute="/api/recipes" />
     </>
   );
 }

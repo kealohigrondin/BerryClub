@@ -1,7 +1,7 @@
 import { Grid, Card, CardContent, Button } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 
-import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../redux/hooks";
 import { Navigate } from "react-router-dom";
 
 export default function Welcome() {
