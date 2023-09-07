@@ -17,8 +17,8 @@ import React from "react";
 
 type Props = {
   recipeRoute: string;
-}
-function RecipeList({recipeRoute}: Props) {
+};
+function RecipeList({ recipeRoute }: Props) {
   const navigate = useNavigate();
   const currentUserId = useAppSelector((state) => state.auth?._id);
   const [recipeList, setRecipeList] = useState<Array<Recipe>>();
@@ -42,7 +42,7 @@ function RecipeList({recipeRoute}: Props) {
   };
 
   useEffect(() => {
-    console.log('Recipe route: ' + recipeRoute);
+    console.log("Recipe route: " + recipeRoute);
     const getRecipes = async () => {
       axios.get(recipeRoute).then(
         (res) => {
@@ -56,7 +56,7 @@ function RecipeList({recipeRoute}: Props) {
       );
     };
     getRecipes();
-  }, [recipeList]);
+  }, [recipeList, recipeRoute]);
 
   if (loadError) {
     return <p>error loading recipes, please reload page</p>;
@@ -79,16 +79,19 @@ function RecipeList({recipeRoute}: Props) {
                   <Grid item xs={12} sm={8}>
                     <h4>Instructions</h4>
                     <ol style={{ paddingLeft: "1.5em" }}>
-                      {recipe.instructions.map((instruction, index) => {
-                        return (
-                          <li
-                            key={`${instruction}-${index}`}
-                            style={{ paddingBottom: "0.5em" }}
-                          >
-                            {instruction}
-                          </li>
-                        );
-                      })}
+                      {/* {recipe.instructions
+                        .split("\n")
+                        .map((instruction, index) => {
+                          return (
+                            <li
+                              key={`${instruction}-${index}`}
+                              style={{ paddingBottom: "0.5em" }}
+                            >
+                              {instruction}
+                            </li>
+                          );
+                        })} */}
+                      <li>{recipe.instructions}</li>
                     </ol>
                   </Grid>
                   <Grid item xs={12} sm={4}>

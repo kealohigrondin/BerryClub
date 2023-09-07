@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RecipeCreateForm from "../components/RecipeCreateForm";
+import { Recipe } from "../models/recipe";
 
 function RecipeEdit() {
   const { recipeId } = useParams();
-  const [recipe, setRecipe] = useState(false);
+  const [recipe, setRecipe] = useState<Recipe>();
 
   useEffect(() => {
     const fetchRecipe = async () => {

@@ -5,3 +5,10 @@ export type Ingredient = MongoObj & {
     quantity: number;
     unit: string;
 }
+
+export const emptyIngredient: Ingredient = {
+    _id: '',
+    name: '',
+    quantity: 0,
+    unit: ''
+}
