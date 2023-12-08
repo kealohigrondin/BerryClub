@@ -8,7 +8,10 @@ module.exports = (app) => {
 
   app.get(
     "/auth/google",
-    passport.authenticate("google", { scope: ["profile"] })
+    passport.authenticate("google", {
+      scope: ["profile"], //gets account, not just name or just email
+      prompt: "select_account", //forces account selection page, disregards previously signed in oauth user
+    })
   );
 
   //this endpoint is hit when /auth/google successfully auths user and sends them back to server
