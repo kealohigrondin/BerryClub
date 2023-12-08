@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../redux/hooks";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../redux/hooks';
 import {
   AppBar,
   Toolbar,
@@ -13,18 +13,18 @@ import {
   Button,
   Tooltip,
   Avatar,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 function Nav() {
   const pages = [
-    { title: "Explore", route: "/recipes/explore" },
-    { title: "Cookbook", route: "/recipes" },
-    { title: "Cart", route: "/cart" },
+    { title: 'Explore', route: '/explore' },
+    { title: 'Cookbook', route: '/recipes' },
+    { title: 'Cart', route: '/cart' },
   ];
   const settings = [
-    { title: "Profile", route: "/dashboard" },
-    { title: "Logout", route: "/auth/logout" },
+    { title: 'Profile', route: '/dashboard' },
+    { title: 'Logout', route: '/auth/logout' },
   ];
   const auth = useAppSelector((state: any) => state.auth);
   const navigate = useNavigate();
@@ -49,73 +49,67 @@ function Nav() {
     setAnchorElUser(undefined);
   };
   return (
-    <AppBar position="static" style={{ background: "darkslateblue" }}>
-      <Container maxWidth="xl">
+    <AppBar position='static' style={{ background: 'darkslateblue' }}>
+      <Container maxWidth='xl'>
         <Toolbar disableGutters>
           {/* Shows on desktop */}
           <Button
-            id="desktopTitle"
+            id='desktopTitle'
             sx={{
               mr: 6,
-              display: { xs: "none", md: "flex" },
+              display: { xs: 'none', md: 'flex' },
               fontWeight: 800,
-              fontFamily: "monospace",
-              fontSize: "1.2em",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            <Link to="dashboard" style={{ color: "white" }}>
+              fontFamily: 'monospace',
+              fontSize: '1.2em',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}>
+            <Link to='dashboard' style={{ color: 'white' }}>
               🍇 Berry Club
             </Link>
           </Button>
           <Box
-            id="desktopNav"
-            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
-          >
+            id='desktopNav'
+            sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map(({ title, route }) => (
               <Button
                 key={title}
                 onClick={() => navigate(route)}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
+                sx={{ my: 2, color: 'white', display: 'block' }}>
                 {title}
               </Button>
             ))}
           </Box>
 
           <Box
-            id="mobileNav"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
+            id='mobileNav'
+            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
+              size='large'
+              aria-label='account of current user'
+              aria-controls='menu-appbar'
+              aria-haspopup='true'
               onClick={handleOpenNavMenu}
-              color="inherit"
-            >
+              color='inherit'>
               <MenuIcon />
             </IconButton>
             <Menu
-              id="menu-appbar"
+              id='menu-appbar'
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
+                vertical: 'top',
+                horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
+                display: { xs: 'block', md: 'none' },
+              }}>
               {pages.map(({ title, route }) => (
                 <MenuItem key={title} onClick={handleCloseNavMenu}>
                   <Link to={route}>{title}</Link>
@@ -125,47 +119,45 @@ function Nav() {
           </Box>
 
           <Typography
-            id="mobileTitle"
-            variant="h5"
+            id='mobileTitle'
+            variant='h5'
             noWrap
-            component="a"
-            href="/dashboard"
+            component='a'
+            href='/dashboard'
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: "monospace",
+              fontFamily: 'monospace',
               fontWeight: 700,
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
+              color: 'inherit',
+              textDecoration: 'none',
+            }}>
             🍇 BERRY CLUB
           </Typography>
 
           {/* Shows on both */}
-          <Box id="settingsMenu" sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+          <Box id='settingsMenu' sx={{ flexGrow: 0 }}>
+            <Tooltip title='Open settings'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
+              sx={{ mt: '45px' }}
+              id='menu-appbar'
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
+              onClose={handleCloseUserMenu}>
               {settings.map(({ title, route }) => (
                 <MenuItem key={title} onClick={handleCloseNavMenu}>
                   <a href={route}>{title}</a>
