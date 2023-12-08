@@ -104,7 +104,6 @@ function RecipeCreateForm({ defaultValues, title }: Props) {
       append({ name: "test", quantity: 1, unit: "" } as Ingredient);
     }
     console.debug("after", fields.length);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ingredientCount, defaultValues]);
 
   return (
