@@ -15,8 +15,8 @@ function Dashboard() {
     <>
       <h1>Secure Dashboard </h1>
       <p>Hello, {auth?.displayName}</p>
-      <h2>My Top Recipes</h2>
-      <RecipeList />
+      <h2>My Recipes</h2>
+      <RecipeList recipeRoute="/api/recipes" />
     </>
   );
 }
